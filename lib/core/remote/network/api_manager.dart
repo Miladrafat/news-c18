@@ -1,15 +1,31 @@
 import 'package:dio/dio.dart';
+import 'package:news_c18/core/resources/app_constants.dart';
+import 'package:news_c18/model/articles_response/Articles_response.dart';
+import 'package:news_c18/model/sources_response/Sources_response.dart';
 
 class ApiManager {
-  Dio dio = Dio(
+  static Dio dio = Dio(
     BaseOptions(
       baseUrl: "https://newsapi.org"
     )
   );
 
-  getSources(){
-    dio.get("/v2/top-headlines/sources",queryParameters: {
-      "apiKey":"d3e16e322c2e4c00b4b4f4967c290a7f"
+  static Future<SourcesResponse> getSources(String selectedCategory)async{
+    var response = await dio.get("/v2/top-headlines/sources",queryParameters: {
+      "apiKey":AppConstants.apiKey,
+      "category":selectedCategory
     });
+    SourcesResponse sourcesResponse = SourcesResponse.fromJson(response.data);
+    return sourcesResponse;
+  }
+
+  static Future<ArticlesResponse> getArticles(String sourceId)async{
+    //?sources=bbc-sport
+    var response = await dio.get("/v2/everything",queryParameters: {
+      "apiKey":AppConstants.apiKey,
+      "sources":sourceId
+    });
+    ArticlesResponse articlesResponse = ArticlesResponse.fromJson(response.data);
+    return articlesResponse;
   }
 }

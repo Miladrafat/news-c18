@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_c18/core/remote/network/api_manager.dart';
 import 'package:news_c18/core/resources/strings_manager.dart';
 import 'package:news_c18/model/category_model.dart';
 import 'package:news_c18/ui/artices/screen/articles_widget.dart';
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: HomeDrawer(backHome),
       body: selectedCategory==null
           ?CategoriesWidget(onClick: chooseCategory,)
-          :ArticlesWidget(),
+          :ArticlesWidget(selectedCategory!),
     );
   }
 
