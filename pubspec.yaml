@@ -39,6 +39,7 @@ dependencies:
   timeago: ^3.7.1
   cached_network_image: ^3.4.1
   dio: ^5.9.2
+  provider: ^6.1.5+1
 
 dev_dependencies:
   flutter_test:
