@@ -8,7 +8,8 @@ import '../../../model/articles_response/Article.dart';
 
 class ArticleItem extends StatelessWidget {
   final Article article;
-  const ArticleItem({super.key,required this.article});
+
+  const ArticleItem({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,17 @@ class ArticleItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadiusGeometry.circular(8.r),
             child: CachedNetworkImage(
-              imageUrl: article.urlToImage??"",
+              imageUrl: article.urlToImage ?? "",
               height: 220.h,
               fit: BoxFit.cover,
-              placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
-              errorWidget: (context, url, error) => Center(child: Icon(Icons.error,size: 40.sp,),),
+              placeholder: (context, url) =>
+                  Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) =>
+                  Center(child: Icon(Icons.error, size: 40.sp)),
             ),
           ),
           Text(
-            article.title??"",
+            article.title ?? "",
             style: Theme.of(
               context,
             ).textTheme.headlineMedium?.copyWith(fontSize: 16.sp),
@@ -41,12 +44,12 @@ class ArticleItem extends StatelessWidget {
             children: [
               Expanded(
                 child: Text(
-                  "By : ${article.author??""}",
+                  "By : ${article.author ?? ""}",
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
               Text(
-                timeago.format(DateTime.parse(article.publishedAt??"")),
+                timeago.format(DateTime.parse(article.publishedAt ?? "")),
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ],
@@ -55,4 +58,6 @@ class ArticleItem extends StatelessWidget {
       ),
     );
   }
+
+
 }
