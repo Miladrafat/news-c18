@@ -32,7 +32,7 @@ class ArticlesList extends StatelessWidget {
                 return Center(child: Text("No articles found"),);
               }
               return ListView.separated(
-                  itemBuilder: (context, index) => ArticleItem(article: articles[index],),
+                  itemBuilder: (context, index) => ArticleItem(article: articles[index],index: index,),
                   separatorBuilder: (context, index) => SizedBox(height: 16.h,),
                   itemCount: articles.length
               );
