@@ -2,7 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
+import 'package:url_launcher/url_launcher.dart';
 import '../../../core/resources/colors_manager.dart';
 import '../../../model/articles_response/Article.dart';
 
@@ -122,7 +122,13 @@ class ArticleItem extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                    openUrl(article.url);
+
+
+
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.black,
                     elevation: 2,
@@ -141,6 +147,10 @@ class ArticleItem extends StatelessWidget {
         );
       },
     );
+  }
+  Future<void> openUrl(String? URL) async {
+    final Uri url = Uri.parse(URL??"https://www.google.com/");
+    await launchUrl(url, mode: LaunchMode.externalApplication);
   }
 
 }
