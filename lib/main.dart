@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c18/core/resources/app_theme.dart';
 import 'package:news_c18/core/resources/routes_manager.dart';
+import 'package:news_c18/ui/Search/Search_screen.dart';
 import 'package:news_c18/ui/home/screen/home_screen.dart';
 
 void main() async{
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           routes: {
-            RoutesManager.homeRouteName:(_)=>HomeScreen()
+            RoutesManager.homeRouteName:(_)=>HomeScreen(),
+            RoutesManager.searchRouteName:(_)=>SearchScreen(),
           },
           initialRoute: RoutesManager.homeRouteName,
         );

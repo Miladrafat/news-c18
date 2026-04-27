@@ -42,7 +42,7 @@ class ArticlesList extends StatelessWidget {
               );
             },
         ),
-    )
+    );
 
       /*FutureBuilder(
         future: ApiManager.getArticles(source.id??""),

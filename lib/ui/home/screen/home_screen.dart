@@ -6,6 +6,8 @@ import 'package:news_c18/ui/artices/screen/articles_widget.dart';
 import 'package:news_c18/ui/categories/screen/categories_widget.dart';
 import 'package:news_c18/ui/home/widgets/home_drawer.dart';
 
+import '../../../core/resources/routes_manager.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -20,6 +22,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(selectedCategory==null?StringsManager.home:selectedCategory!.title),
+        actions: [
+          selectedCategory==null?
+              SizedBox.shrink():
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              Navigator.pushReplacementNamed(context, RoutesManager.searchRouteName);
+            },
+          )
+        ],
       ),
       drawer: HomeDrawer(backHome),
       body: selectedCategory==null
