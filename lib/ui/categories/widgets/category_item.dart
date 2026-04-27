@@ -16,79 +16,68 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: index.isEven?TextDirection.ltr:TextDirection.rtl,
-      child: TweenAnimationBuilder(
-        tween: Tween(begin: 0.0, end: 1.0),
-        duration: Duration(milliseconds: 500 ),
-        builder: (context, value, child) {
-        return Opacity(
-          opacity: value,
-          child: Transform.translate(
-            offset: Offset(-1000 * (1 - value),0 ),
-            child: Container(
-              clipBehavior: Clip.antiAlias,
-              height: 300.h,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(24.r)
-              ),
-              child:  Row(
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        height: 300.h,
+        decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(24.r)
+        ),
+        child:  Row(
+          children: [
+            Expanded(
+                child: Image.asset(category.imagePath,height: double.infinity,
+                  fit: BoxFit.fill,
+                )),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                      child: Image.asset(category.imagePath,height: double.infinity,
-                        fit: BoxFit.fill,
-                      )),
-                  Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        FittedBox(
-                          fit:BoxFit.scaleDown,
-                          child: Text(category.title,style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              fontSize: 32.sp
+                  FittedBox(
+                    fit:BoxFit.scaleDown,
+                    child: Text(category.title,style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontSize: 32.sp
+                    ),),
+                  ),
+                  SizedBox(height: 30.h,),
+                  InkWell(
+                    onTap: () {
+                      onClick(category);
+                    },
+                    child: Container(
+                      padding: REdgeInsetsDirectional.only(
+                          start: 16,
+                          top: 5,
+                          bottom: 5
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.5),
+                          borderRadius: BorderRadius.circular(84.r)
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(StringsManager.viewAll,style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w500
                           ),),
-                        ),
-                        SizedBox(height: 30.h,),
-                        InkWell(
-                          onTap: () {
-                            onClick(category);
-                          },
-                          child: Container(
-                            padding: REdgeInsetsDirectional.only(
-                                start: 16,
-                                top: 5,
-                                bottom: 5
-                            ),
-                            decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.5),
-                                borderRadius: BorderRadius.circular(84.r)
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(StringsManager.viewAll,style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                    fontWeight: FontWeight.w500
-                                ),),
-                                SizedBox(width: 10.w,),
-                                CircleAvatar(
-                                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                                  radius: 27.r,
-                                  child: SvgPicture.asset(AssetsManager.arrow,
-                                    matchTextDirection: true,
-                                    width: 24.w,height: 24.h,),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-                      ],),
+                          SizedBox(width: 10.w,),
+                          CircleAvatar(
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            radius: 27.r,
+                            child: SvgPicture.asset(AssetsManager.arrow,
+                              matchTextDirection: true,
+                              width: 24.w,height: 24.h,),
+                          )
+                        ],
+                      ),
+                    ),
                   )
-                ],
-              ),
-            ),
-          ),
-        );
-      },),
+                ],),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

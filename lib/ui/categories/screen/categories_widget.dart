@@ -4,6 +4,7 @@ import 'package:news_c18/ui/categories/widgets/category_item.dart';
 
 import '../../../core/resources/strings_manager.dart';
 import '../../../model/category_model.dart';
+import 'package:animate_do/animate_do.dart';
 
 class CategoriesWidget extends StatelessWidget {
   void Function(CategoryModel) onClick;
@@ -21,10 +22,14 @@ class CategoriesWidget extends StatelessWidget {
           SizedBox(height: 16.h,),
           Expanded(
             child: ListView.separated(
-                itemBuilder: (context, index) =>CategoryItem(
-                  onClick:onClick ,
-                  category: CategoryModel.categories[index],
-                  index: index,
+                itemBuilder: (context, index) =>FadeInLeft(
+                  duration: const Duration(milliseconds: 700),
+                  delay: Duration(milliseconds: 1000),
+                  child: CategoryItem(
+                    onClick:onClick ,
+                    category: CategoryModel.categories[index],
+                    index: index,
+                  ),
                 ),
                 separatorBuilder: (context, index) => SizedBox(height: 16.h,),
                 itemCount: CategoryModel.categories.length
