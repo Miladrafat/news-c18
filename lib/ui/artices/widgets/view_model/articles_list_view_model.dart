@@ -15,6 +15,11 @@ class ArticlesListViewModel extends ChangeNotifier{
       notifyListeners();
       var response = await ApiManager.getArticles(sourceId);
       isLoading = false;
+      if (response.totalResults==0){
+        errorMessage="No articles found";
+        notifyListeners();
+        return;
+      }
       if(response.status!="error"){
         // logic success
         articles = response.articles;

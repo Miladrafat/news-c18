@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c18/core/resources/app_theme.dart';
 import 'package:news_c18/core/resources/routes_manager.dart';
+import 'package:news_c18/ui/Search/All_view_model/AllViewModel.dart';
+import 'package:news_c18/ui/Search/All_view_model/screen/Search_screen.dart';
 import 'package:news_c18/ui/home/screen/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +29,10 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           routes: {
-            RoutesManager.homeRouteName:(_)=>HomeScreen()
+            RoutesManager.homeRouteName:(_)=>HomeScreen(),
+            RoutesManager.searchRouteName:(_)=>ChangeNotifierProvider(
+              create: (context) => AllViewModel(),
+                child: SearchScreen()),
           },
           initialRoute: RoutesManager.homeRouteName,
         );
