@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../../../../model/articles_response/Article.dart';
-import '../../widget/All_Articel_Items.dart';
-import '../AllViewModel.dart';
+import '../All_view_model/AllViewModel.dart';
+import '../widget/All_Articel_Items.dart';
+
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -69,6 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ElevatedButton(
                       onPressed: () {
                         viewModel.searchArticles(null);
+                        search.text="";
                       },
                       child: Text("Retry"),
                     )

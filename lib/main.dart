@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_c18/core/resources/app_theme.dart';
 import 'package:news_c18/core/resources/routes_manager.dart';
 import 'package:news_c18/ui/Search/All_view_model/AllViewModel.dart';
-import 'package:news_c18/ui/Search/All_view_model/screen/Search_screen.dart';
+import 'package:news_c18/ui/Search/screen/Search_screen.dart';
 import 'package:news_c18/ui/home/screen/home_screen.dart';
 import 'package:provider/provider.dart';
 
