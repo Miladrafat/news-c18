@@ -6,11 +6,11 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../core/resources/colors_manager.dart';
 import '../../../model/articles_response/Article.dart';
 
-class ArticleItem extends StatelessWidget {
+class AllArticelItems extends StatelessWidget {
   final Article article;
   final int index;
 
-  const ArticleItem({super.key, required this.article,required this.index});
+  const AllArticelItems({super.key, required this.article,required this.index});
 
   @override
   Widget build(BuildContext context) {

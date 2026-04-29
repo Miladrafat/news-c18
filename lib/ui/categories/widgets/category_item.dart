@@ -18,61 +18,62 @@ class CategoryItem extends StatelessWidget {
       textDirection: index.isEven?TextDirection.ltr:TextDirection.rtl,
       child: Container(
         clipBehavior: Clip.antiAlias,
-        height: 198.h,
+        height: 300.h,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
-          borderRadius: BorderRadius.circular(24.r)
+            color: Theme.of(context).colorScheme.primary,
+            borderRadius: BorderRadius.circular(24.r)
         ),
         child:  Row(
           children: [
             Expanded(
                 child: Image.asset(category.imagePath,height: double.infinity,
-                fit: BoxFit.fill,
+                  fit: BoxFit.fill,
                 )),
             Expanded(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                FittedBox(
-                  fit:BoxFit.scaleDown,
-                  child: Text(category.title,style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    fontSize: 32.sp
-                  ),),
-                ),
-                 InkWell(
-                   onTap: () {
+                  FittedBox(
+                    fit:BoxFit.scaleDown,
+                    child: Text(category.title,style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        fontSize: 32.sp
+                    ),),
+                  ),
+                  SizedBox(height: 30.h,),
+                  InkWell(
+                    onTap: () {
                       onClick(category);
-                   },
-                   child: Container(
-                     padding: REdgeInsetsDirectional.only(
-                       start: 16,
-                       top: 5,
-                       bottom: 5
-                     ),
-                     decoration: BoxDecoration(
-                         color: Colors.white.withValues(alpha: 0.5),
+                    },
+                    child: Container(
+                      padding: REdgeInsetsDirectional.only(
+                          start: 16,
+                          top: 5,
+                          bottom: 5
+                      ),
+                      decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.5),
                           borderRadius: BorderRadius.circular(84.r)
-                     ),
-                     child: Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                       children: [
-                         Text(StringsManager.viewAll,style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                             fontWeight: FontWeight.w500
-                         ),),
-                         SizedBox(width: 10.w,),
-                         CircleAvatar(
-                           backgroundColor: Theme.of(context).colorScheme.secondary,
-                           radius: 27.r,
-                           child: SvgPicture.asset(AssetsManager.arrow,
-                             matchTextDirection: true,
-                             width: 24.w,height: 24.h,),
-                         )
-                       ],
-                     ),
-                   ),
-                 )
-              ],),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(StringsManager.viewAll,style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                              fontWeight: FontWeight.w500
+                          ),),
+                          SizedBox(width: 10.w,),
+                          CircleAvatar(
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            radius: 27.r,
+                            child: SvgPicture.asset(AssetsManager.arrow,
+                              matchTextDirection: true,
+                              width: 24.w,height: 24.h,),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                ],),
             )
           ],
         ),
