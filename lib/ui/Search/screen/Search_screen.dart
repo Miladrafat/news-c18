@@ -70,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     ElevatedButton(
                       onPressed: () {
                         viewModel.searchArticles(null);
-                        search.text="";
+
                       },
                       child: Text("Retry"),
                     )
@@ -84,6 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
               return InkWell(
                 onTap: () {
                   viewModel.searchArticles(null);
+                  search.text="";
                 },
                 child: Center(
                   child: Text("No articles found"),
