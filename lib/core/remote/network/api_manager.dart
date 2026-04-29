@@ -30,13 +30,33 @@ class ApiManager {
   }
 
 
-  static Future<ArticlesResponse> getAllArticles(String? searchKeyboard)async{
-    var response = await dio.get("/v2/everything",queryParameters: {
-      "apiKey":AppConstants.apiKey,
-      "q":searchKeyboard??"news",
+  static Future<ArticlesResponse> getAllArticles(String? searchKeyboard, int page) async {
 
-    });
-    ArticlesResponse articlesResponse = ArticlesResponse.fromJson(response.data);
-    return articlesResponse;
+    try {
+      final response = await dio.get("/v2/everything", queryParameters: {
+          "apiKey": AppConstants.apiKey,
+          "q": searchKeyboard ?? "news",
+          "page": page,
+          "pageSize": 10,
+        },
+      );
+
+      return ArticlesResponse.fromJson(response.data);
+
+    } on DioException catch (e) {
+
+      if (e.type == DioExceptionType.connectionTimeout ||
+          e.type == DioExceptionType.receiveTimeout ||
+          e.type == DioExceptionType.unknown) {
+
+        throw Exception("No Internet Connection");
+      }
+      if (e.response != null) {
+        throw Exception(
+            "Api Error: ${e.response?.statusCode} - ${e.response?.statusMessage}");
+      }
+
+      throw Exception("Unexpected Error: ${e.message}");
+    }
   }
 }

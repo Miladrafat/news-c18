@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:news_c18/core/remote/network/api_manager.dart';
 import 'package:news_c18/core/resources/strings_manager.dart';
@@ -16,7 +18,9 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  String? error;
   CategoryModel? selectedCategory;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,16 +31,48 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox.shrink():
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {
-              Navigator.pushReplacementNamed(context, RoutesManager.searchRouteName);
+            onPressed: ()async {
+              try{
+                final result = await InternetAddress.lookup('google.com');
+                if (result.isNotEmpty) {
+                  Navigator.pushReplacementNamed(context, RoutesManager.searchRouteName);
+                }
+              }
+               on SocketException{
+
+                error="No Internet Connection";
+                setState(() {
+
+                });
+
+              }
             },
           )
         ],
       ),
       drawer: HomeDrawer(backHome),
-      body: selectedCategory==null
-          ?CategoriesWidget(onClick: chooseCategory,)
-          :ArticlesWidget(selectedCategory!),
+
+      body:error!=null ?  InkWell(
+          onTap: () async{
+            try{
+              final result = await InternetAddress.lookup('google.com');
+              if (result.isNotEmpty) {
+                Navigator.pushReplacementNamed(context, RoutesManager.searchRouteName);
+              }
+            }
+            on SocketException {
+              error="No Internet Connection";
+
+              setState(() {
+
+              });
+            }
+          },
+          child: Center(child: Text(error.toString())))
+          : selectedCategory==null ?
+           CategoriesWidget(onClick: chooseCategory,)
+          :ArticlesWidget(selectedCategory!)
+
     );
   }
 
