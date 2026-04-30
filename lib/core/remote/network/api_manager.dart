@@ -37,7 +37,7 @@ class ApiManager {
           "apiKey": AppConstants.apiKey,
           "q": searchKeyboard ?? "news",
           "page": page,
-          "pageSize": 10,
+          "pageSize": 3,
         },
       );
 
